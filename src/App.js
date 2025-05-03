@@ -29,8 +29,7 @@ function App() {
   const [headers, setHeaders] = useState([]);
   const [sortConfig, setSortConfig] = useState({ columnIndex: null, direction: "asc" });
   const [totals, setTotals] = useState({ debit: 0, credit: 0 });
-  const [searchQuery, setSearchQuery] = useState('');
-  const [appliedSearchQuery, setAppliedSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -129,17 +128,10 @@ function App() {
                       onChange={(e) => setSearchQuery(e.target.value)}
                   />
                   <Button
-                      variant="contained"
-                      onClick={() => setAppliedSearchQuery(searchQuery)}
-                  >
-                    Filter
-                  </Button>
-                  <Button
                       variant="outlined"
                       color="secondary"
                       onClick={() => {
                         setSearchQuery("");
-                        setAppliedSearchQuery("");
                       }}
                   >
                     Clear
@@ -168,7 +160,7 @@ function App() {
                           .filter((row) =>
                               (row[2] || "")
                                   .toLowerCase()
-                                  .includes(appliedSearchQuery.toLowerCase())
+                                  .includes(searchQuery.toLowerCase())
                           )
                           .map((row, idx) => (
                               <TableRow key={idx}>
